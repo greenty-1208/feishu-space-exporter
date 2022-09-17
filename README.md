@@ -1,7 +1,7 @@
 # feishu-space-exporter
 功能：
 - 命令行交互式查看知识库
-- 整本导出PDF
+- 整本导出PDF(开发中)
 
 用户配置：
 - 文件式
