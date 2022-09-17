@@ -12,7 +12,7 @@ class Util(object):
             os.makedirs(path)
             self.log.info('mkdir -p {}'.format(path)) 
         else:
-            self.log.info('{} is already exist'.format(path)) 
+            self.log.info('{} is already exist, no need to create'.format(path)) 
 
     def idx_checker(self, op, min_range, max_range):
         idx = int(op)

@@ -15,7 +15,11 @@ show space: 查看知识库列表
 use $idx: 选择某一本知识库，$idx必须为数字, 可以通过show space查看选项
 ls [-l]: 查看当前目录
 cd $idx: 进入子目录
-cd ..: 返回上级目录
+cd : 返回上级目录
+view $idx: 查看目录下指定的文章(PDF)
+view . 查看当前的文章(PDF)
+
+
 """
     LogWrapper().info(info)
 

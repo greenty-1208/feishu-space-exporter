@@ -94,9 +94,9 @@ class Space(object):
             self.log.warning('当前已经是根目录')
         else:
             self.now_token = nex_token
-        self.pwd(self.now_token)
+        self.pwd()
 
-    def pwd(self, token):
+    def pwd(self, logprint=True):
         names = []
         now = token
         while now is not None:
@@ -105,11 +105,21 @@ class Space(object):
         tmp_iter = reversed(names)
         pwd_str = '/'.join(list(tmp_iter))
         self.log.info('当前目录: {}'.format(pwd_str))
+        return pwd_str
 
 
 
     def init_user_folder(self):
         self.output_folder = os.path.join(self.output_folder, self.tenant_name)
         Util().mkdir_if_not_exist(self.output_folder)
+
+    def init_cur_folder(self, path=None):
+        if path is None:
+            path = self.pwd(logprint=False)
+        path = os.path.join(self.output_folder, path)
+        Util().mkdir_if_not_exist(path)
+
+    def export(self, token):
+        
 
     

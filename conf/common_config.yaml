@@ -2,3 +2,5 @@ url:
   user: /space/api/user/
   space_list: /space/api/wiki/v2/space/get/
   child_list: /space/api/wiki/v2/tree/get_node_child/
+  export_create: /space/api/export/create/
+  
