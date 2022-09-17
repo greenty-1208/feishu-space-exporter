@@ -1,9 +1,9 @@
 # feishu-space-exporter
-功能：
+## 功能：
 - 命令行交互式查看知识库
 - 整本导出PDF(开发中)
 
-用户配置：
+## 用户配置：
 - 文件式
 ```
 cp conf/user_config_template.yaml conf/user_config.yaml
@@ -15,8 +15,11 @@ cookie: {{cookie}}
 ```
 - 运行时输入
 
-
-菜单命令：
+## 使用
+```
+./run.sh
+```
+## 菜单命令：
 |  命令   | 含义  |
 |  ----  | ----  |
 | h / help  | 查看本帮助 |
