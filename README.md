@@ -27,11 +27,11 @@ cookie: {{cookie}}
 ## 使用
 当前
 ```
-./run.sh
+./feishu_exporter.sh
 ```
 未来
 ```
-./run.sh [local] [--view_mode vscode(默认) / custom] 
+./feishu_exporter.sh [local] [--view_mode vscode(默认) / custom] 
 ```
 
 ## 功能概述
@@ -54,7 +54,8 @@ cookie: {{cookie}}
 | user | 查看当前登录用户| ✔ |
 | show&nbsp;&nbsp;space | 查看知识库列表| ✔ |
 | use&nbsp;&nbsp;$idx | 选择某一本知识库，$idx必须为数字, 可以通过show space查看|  ✔ |
-| ls&nbsp;&nbsp;[-l] | 查看当前目录| ✔ |
+| pwd | 查看当前路径|  |
+| ls&nbsp;&nbsp;[-l] | 查看当前目录下文件| ✔ |
 | cd&nbsp;&nbsp;$idx | 进入指定\$idx目录<br>\$idx = '..' 返回上级目录| ✔ |
 |view [-all] [-u] $idx |通过vscode 查看指定文档 <br>-all: 以$idx为根目录的整本文档（会提示需要提前导出, 不支持EXCEL）<br>-u: 如果编辑时间晚于导出时间会重新导出，也会重新生成整本<br> $idx = '.' 当前路径 |
 |export [-all] $idx | 导出指定目录文档<br>-all: 以$idx为根目录的整本文档<br>$idx = '.' 当前路径,|

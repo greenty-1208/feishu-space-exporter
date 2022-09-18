@@ -98,13 +98,14 @@ class Space(object):
 
     def pwd(self, logprint=True):
         names = []
-        now = token
+        now = self.now_token
         while now is not None:
             names.append(self.token_to_name[now])
             now = self.father_token_dict[now]
         tmp_iter = reversed(names)
         pwd_str = '/'.join(list(tmp_iter))
-        self.log.info('当前目录: {}'.format(pwd_str))
+        if logprint:
+            self.log.info('当前目录: {}'.format(pwd_str))
         return pwd_str
 
 
@@ -120,6 +121,7 @@ class Space(object):
         Util().mkdir_if_not_exist(path)
 
     def export(self, token):
+        pass
         
 
     
