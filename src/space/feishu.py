@@ -1,8 +1,6 @@
 #coding:utf-8
 
 import os
-import yaml
-import json
 from common.http import Http
 from common.util import Util
 
@@ -146,6 +144,7 @@ class Feishu(Space):
             返回token的路径
             输出文件名的路径
         """
+        assert self.now_space_id is not None, '未选择space'
         names = []
         tokens = []
         now = self.now_token
@@ -156,7 +155,9 @@ class Feishu(Space):
         
         if logprint:
             self.log.info('当前目录: {}'.format('/'.join(list(reversed(names)))))
-        return '/'.join(list(reversed(tokens)))
+        pwd_str = '/'.join(list(reversed(tokens)))
+        self.log.debug('pwd: {}'.format(pwd_str))
+        return pwd_str
 
 
 

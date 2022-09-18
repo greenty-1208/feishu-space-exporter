@@ -1,7 +1,5 @@
 import json
 from urllib import request
-import os
-import sys
 from common import log
 class Http(object):
     def __init__(self, domain='', cookie=''):
