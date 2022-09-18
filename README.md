@@ -1,7 +1,7 @@
 # feishu-space-exporter
 ## 写在前面
 
-**本read me 包含了超前于开发进展的功能点，欢迎关注+收藏**
+**本read me 包含了超前于开发进展的功能点，空余时间开发，欢迎关注+收藏**
 
 飞书知识库是一款非常好用的在线文档知识库，但是如果想导出为本地文档，只能单篇导出
 
@@ -18,7 +18,6 @@ cp conf/user_config_template.yaml conf/user_config.yaml
 ```
 `user_config.yaml` 增加以下配置
 ```
-
 domain: {{domain}}
 cookie: {{cookie}}
 ```
@@ -78,3 +77,7 @@ cookie: {{cookie}}
 |  docx | pdf  | 报错 |
 |  思维导图 | json  | vim|
 | excel  | xlsx  |报错 |
+
+
+### FIX TODO 
+- 未命名文档文件名是空的需要特殊处理一下

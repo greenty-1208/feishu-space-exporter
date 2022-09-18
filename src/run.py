@@ -2,7 +2,7 @@
 import os
 import sys
 # sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-from space.space import Space
+from space.feishu import Feishu
 from common.log import LogWrapper
 def help_info():
     info = \
@@ -26,25 +26,28 @@ view . 查看当前的文章(PDF)
 def user_run(handler):
      while True:
             try:
-                input_list = input("FeishuExpoter>>> ").strip().split()
-                if len(input_list) == 0:
+                op = input("FeishuExpoter>>> ").strip().split()
+                if len(op) == 0:
                     continue
-                LogWrapper().info('user input: {}'.format(input_list))
-                if len(input_list) > 0 and (input_list[0] == 'q' or input_list[0] == 'quit'):
+                LogWrapper().info('user input: {}'.format(op))
+                if (op[0] == 'q' or op[0] == 'quit') and len(op) == 1:
                     exit(0)
-                elif len(input_list) > 0 and (input_list[0] == 'h' or input_list[0] == 'help'):
+                elif (op[0] == 'h' or op[0] == 'help') and len(op) == 1:
                     help_info()
-                elif len(input_list) == 1 and input_list[0] == 'user':
+                elif op[0] == 'user' and len(op) == 1:
                     handler.get_user()
-                elif len(input_list) == 2 and input_list[0] == 'show' and input_list[1] == 'space':
+                elif op[0] == 'pwd' and len(op) == 1:
+                    handler.pwd()
+                elif op[0] == 'show' and op[1] == 'space'and len(op) == 2:
                     handler.get_space_list()
-                elif len(input_list) >= 1 and input_list[0] == 'ls':
-                    opt_l = True if len(input_list) == 2 and input_list[1] == '-l' else False
-                    handler.get_cur_dir(opt_l)
-                elif len(input_list) == 2 and input_list[0] == 'use':
-                    handler.choose_space(input_list[1])
-                elif len(input_list) == 2 and input_list[0] == 'cd':
-                    handler.cd(input_list[1])    
+                elif op[0] == 'ls' and len(op) == 1:
+                    handler.get_cur_dir(False)
+                elif op[0] == 'll' and len(op) == 1:
+                    handler.get_cur_dir(True)
+                elif op[0] == 'use' and len(op) == 2:
+                    handler.choose_space(op[1])
+                elif op[0] == 'cd' and len(op) == 2:
+                    handler.cd(op[1])
                 else:
                     LogWrapper().error('option not define')
             except Exception as e:
@@ -55,7 +58,7 @@ def main():
     domain = input('domain (已经添加到user_config可以直接回车): ')
     cookie = input('cookie (已经添加到user_config可以直接回车): ')
     try:
-        handler = Space(os.getcwd(), domain, cookie)
+        handler = Feishu(os.getcwd(), domain, cookie)
         LogWrapper().info('查询已登录用户 ...')
         handler.get_user()
         LogWrapper().info('初始化输出目录 ...')
