@@ -16,9 +16,10 @@ class Http(object):
     def Get(self, url, headers=dict(), params=dict()):
         param_str = '&'.join('{}={}'.format(k, v) for k,v in params.items())
         full_url = self.domain + url + '?' + param_str
-        self.headers.update(headers)
-        req = request.Request(url=full_url, headers=self.headers)
-        
+        headers.update(self.headers)
+        self.log.debug('url: {}'.format(full_url))
+        self.log.debug('header: {}'.format(full_url))
+        req = request.Request(url=full_url, headers=headers)
         try:
             r = request.urlopen(req)
             resp_str = r.read()
@@ -28,6 +29,7 @@ class Http(object):
             data = resp.get('data')
         except Exception as e:
             self.log.error('http get error | full_url: {} | e: {}'.format(full_url, str(e)))
+        self.log.debug('resp: {}'.format(json.dumps(data)))
         return data
 
     def Post(self, url, body):

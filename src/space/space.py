@@ -30,7 +30,7 @@ class Space(object):
         pass
 
     @abstractmethod
-    def get_space_list(self, params):
+    def show_space(self, params):
         pass
 
     @abstractmethod
@@ -45,16 +45,16 @@ class Space(object):
     def init_user_folder(self):
         pass
 
-    def init_cur_folder(self, path=None):
-        if path is None:
-            path = self.pwd(logprint=False)
-        path = os.path.join(self.output_folder, path)
-        Util().mkdir_if_not_exist(path)
-
     @abstractmethod
     def choose_space(self, idx_str):
         pass
 
     @abstractmethod
-    def get_cur_dir(self, opt_l=False):
+    def ls(self, opt_l=False):
         pass
+
+    def init_cur_folder(self, path=None):
+        if path is None:
+            path = self.pwd(logprint=False)
+        path = os.path.join(self.output_folder, path)
+        Util().mkdir_if_not_exist(path)

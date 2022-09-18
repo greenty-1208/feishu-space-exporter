@@ -10,9 +10,7 @@ class Util(object):
         # TODO add log
         if not os.path.exists(path) or not os.path.isdir(path):
             os.makedirs(path)
-            self.log.info('mkdir -p {}'.format(path)) 
-        else:
-            self.log.info('{} is already exist, no need to create'.format(path)) 
+            self.log.debug('mkdir -p {}'.format(path))
 
     def idx_checker(self, op, min_range, max_range):
         idx = int(op)

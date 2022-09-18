@@ -42,7 +42,7 @@ class LogWrapper(object):
 
         # 控制台句柄
         console = logging.StreamHandler()
-        console.setLevel(logging.NOTSET)
+        console.setLevel(logging.INFO)
         console.setFormatter(formatter)
 
         # 添加内容到日志句柄中
@@ -65,6 +65,7 @@ class LogWrapper(object):
 
 def main():
     log_wrapper = LogWrapper()
+    log_wrapper.debug("this is debug")
     log_wrapper.info("this is info")
     log_wrapper.debug("this is debug")
     log_wrapper.error("this is error")
