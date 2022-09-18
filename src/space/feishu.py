@@ -26,7 +26,7 @@ class Feishu(Space):
         self.now_space_id = None
         self.now_token = None
         self.sons = [] # 当前目录的子目录列表
-        self.fa = dict() # 当前目录的父目录列表
+        self.fa = dict() # 当前目录的父目录列表, 根目录等于None
         self.doc_info = dict() # 文档信息映射 key: token value: tuple(name, type)
 
     def get_user(self, params=''):
@@ -54,12 +54,13 @@ class Feishu(Space):
 
     def doc_type(self, token):
         doc_type = self.doc_info[token][1]
-        return self.type_view[doc_type]
+        return self.type_view.get(doc_type,'unknown')
 
     def show_space(self,params={'size':24}):
         """
             打印知识库列表
             更新space_list
+            更新fa
 
         """
         url = self.url_dict.get('space_list', None)
@@ -85,6 +86,7 @@ class Feishu(Space):
         self.now_space_id, self.now_token = self.space_list[idx]
         self.log.info('chose {}'.format(self.doc_name(self.now_token)))
         self.init_cur_folder(self.pwd())
+        self.ls()
 
     def ls(self, opt_l=False):
         """
@@ -105,7 +107,10 @@ class Feishu(Space):
         for idx, d in enumerate(data[self.now_token]):
             self.sons.append(d['wiki_token'])
             self.set_doc_info(d['wiki_token'], (d['title'], d['obj_token'][0:3]))
-            title = str(idx) + '::' + self.doc_type(d['wiki_token']) + "::" + self.doc_name(d['wiki_token'])
+            if opt_l is True:
+                title = '{}::\t{}\t{}'.format(str(idx), self.doc_type(d['wiki_token']), self.doc_name(d['wiki_token']))
+            else:
+                title = '{}::【{}】{}'.format(str(idx), self.doc_type(d['wiki_token']), self.doc_name(d['wiki_token']))
             if d['has_child'] is True:
                 title += '/'
             title_list.append(title)
@@ -130,7 +135,7 @@ class Feishu(Space):
             nex_token = self.sons[idx]
             self.fa[nex_token] = self.now_token
 
-        if nex_token == self.now_token:
+        if nex_token is None:
             self.log.warning('当前已经是根目录')
         else:
             self.now_token = nex_token
